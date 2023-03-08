@@ -4,27 +4,76 @@ import Job from "../components/Job.astro";
 import Program from "../components/Program.astro";
 import LetterPage from "../layouts/LetterPage.astro";
 
-const jobs = await getCollection("jobs");
+const groupBy = <T, K>(list: T[], selector: (entry: T) => K): [K, T[]][] => {
+	const groups = new Map<K, T[]>();
+	list.forEach(entry => {
+		const key = selector(entry);
+		const group = groups.get(key);
+		group ? group.push(entry) : groups.set(key, [entry]);
+	});
+	return [...groups.entries()];
+};
+
+const joinLocalized = (list: string[], normalSeparator: string, lastSeparator: string): string => {
+	let result = "";
+	list.forEach((entry, i) => {
+		result += entry;
+		if (i === list.length - 1) {
+			//
+		} else if (i === list.length - 2) {
+			result += lastSeparator;
+		} else {
+			result += normalSeparator;
+		}
+	});
+	return result;
+};
+
+const jobs = groupBy(await getCollection("jobs"), job => job.data.company);
 const education = await getCollection("education");
+const other = (await getCollection("other")).sort(
+	(a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0),
+);
+
+const otherHeading = joinLocalized(
+	other.map(entry => entry.data.name),
+	", ",
+	" & ",
+);
 ---
 
 <LetterPage>
 	<h1>Arden Sinclair</h1>
-	<ul>
+	<ul class="contact">
 		<li>general@ardensinclair.com</li>
 		<li>(306) 737-5563</li>
 		<li>Vancouver, BC</li>
 	</ul>
 	<section>
 		<h2>Work Experience</h2>
-		{jobs.map(job => <Job job={job} />)}
+		{jobs.map(([company, positions]) => <Job company={company} positions={positions} />)}
 	</section>
 	<section>
 		<h2>Education</h2>
 		{education.map(program => <Program program={program} />)}
 	</section>
 	<section>
-		<h2>Skills & Interests</h2>
+		<h2>{otherHeading}</h2>
+		<ul>
+			{
+				other.map(async entry => {
+					const { Content } = await entry.render();
+					return (
+						<li class="horizontal-lists">
+							<>
+								<b>{entry.data.name}:</b>
+								<Content />
+							</>
+						</li>
+					);
+				})
+			}
+		</ul>
 	</section>
 </LetterPage>
 
@@ -35,19 +84,31 @@ const education = await getCollection("education");
 
 	h2 {
 		font-size: 1.25rem;
-		margin-top: 0.25in;
-		margin-bottom: 0.15in;
+		margin-top: 0.2in;
+		margin-bottom: 0.1in;
 		text-transform: uppercase;
 	}
 
-	ul {
+	.contact {
 		padding: 0;
 		margin: 0;
 		display: flex;
-		gap: 2rem;
+		gap: 1rem;
 	}
 
-	li:first-child {
-		display: inline;
+	.contact li:first-child {
+		list-style-type: none;
+	}
+</style>
+
+<style is:global>
+	.horizontal-lists ul {
+		display: inline-flex;
+		list-style-type: "; ";
+		padding-left: 0.5rem;
+	}
+
+	.horizontal-lists ul li:first-child {
+		list-style-type: none;
 	}
 </style>

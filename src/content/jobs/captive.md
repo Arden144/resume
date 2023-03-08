@@ -1,7 +1,8 @@
 ---
 company: Captive Audience
 position: VR Team Lead
-date: May 2022 – September 2022
+start: May 2022
+end: September 2022
 location: Regina, SK
 ---
 - Managed the entire lifecycle of virtual reality experiences, from setup to teardown, while providing on-site and remote assistance to quickly resolve issues in a fast-paced, time-critical environment.

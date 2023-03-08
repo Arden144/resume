@@ -1,28 +1,60 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import chrono from "chrono-node";
+
+const dateFormat = { month: "long", year: "numeric" } satisfies Intl.DateTimeFormatOptions;
 
 interface Props {
-	job: CollectionEntry<"jobs">;
+	company: string;
+	positions: CollectionEntry<"jobs">[];
 }
 
-const { job } = Astro.props;
-const { Content } = await job.render();
+const { company, positions } = Astro.props;
+const multi = positions.length > 1;
+
+const [startDate] = positions
+	.map(p => chrono.parseDate(p.data.start))
+	.sort()
+	.reverse();
+const [endDate] = positions.map(p => chrono.parseDate(p.data.end)).sort();
+
+const start = startDate.toLocaleDateString("en-US", dateFormat);
+const end = endDate.toLocaleDateString("en-US", dateFormat);
+
+const locations = [...new Set(positions.map(p => p.data.location))].join(", ");
+const roles = multi ? "Various roles" : positions[0].data.position;
 ---
 
 <div>
 	<div class="info">
-		<h3>{job.data.company}</h3>
-		<h3>{job.data.date}</h3>
-		<h4>{job.data.position}</h4>
-		<h4>{job.data.location}</h4>
+		<h3>{company}</h3>
+		<h3>{start} – {end}</h3>
+		<h4>{roles}</h4>
+		<h4>{locations}</h4>
 	</div>
-	<Content />
+	{
+		positions.map(async job => {
+			const { Content } = await job.render();
+			return (
+				<>
+					{multi && (
+						<div class="info">
+							<h4>{job.data.position}</h4>
+							<h4>
+								{job.data.start} – {job.data.end}
+							</h4>
+						</div>
+					)}
+					<Content />
+				</>
+			);
+		})
+	}
 </div>
 
 <style>
 	.info {
 		display: grid;
-		grid-template-rows: 1fr 1fr;
 		grid-template-columns: 1fr 1fr;
 	}
 

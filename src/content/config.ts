@@ -4,7 +4,8 @@ const jobCollection = defineCollection({
 	schema: z.object({
 		company: z.string(),
 		position: z.string(),
-		date: z.string(),
+		start: z.string(),
+		end: z.string(),
 		location: z.string(),
 	}),
 });
@@ -18,7 +19,15 @@ const educationCollection = defineCollection({
 	}),
 });
 
+const otherCollection = defineCollection({
+	schema: z.object({
+		name: z.string(),
+		priority: z.number().optional(),
+	}),
+});
+
 export const collections = {
 	jobs: jobCollection,
 	education: educationCollection,
+	other: otherCollection,
 };

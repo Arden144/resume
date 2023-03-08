@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/noto-serif-georgian": "^4.5.13",
-    "astro": "^2.0.18"
+    "astro": "^2.1.2",
+    "chrono-node": "^2.5.1"
   }
 }
