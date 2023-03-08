@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	job: CollectionEntry<"jobs">;
+}
+
+const { job } = Astro.props;
+const { Content } = await job.render();
+---
+
+<div>
+	<div class="info">
+		<h3>{job.data.company}</h3>
+		<h3>{job.data.date}</h3>
+		<h4>{job.data.position}</h4>
+		<h4>{job.data.location}</h4>
+	</div>
+	<Content />
+</div>
+
+<style>
+	.info {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.info > :nth-child(2n + 1) {
+		justify-self: start;
+	}
+
+	.info > :nth-child(2n) {
+		justify-self: end;
+	}
+
+	h4 {
+		font-weight: normal;
+		font-style: italic;
+	}
+</style>

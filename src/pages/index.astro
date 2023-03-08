@@ -1,15 +1,53 @@
 ---
+import { getCollection } from "astro:content";
+import Job from "../components/Job.astro";
+import Program from "../components/Program.astro";
+import LetterPage from "../layouts/LetterPage.astro";
+
+const jobs = await getCollection("jobs");
+const education = await getCollection("education");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<LetterPage>
+	<h1>Arden Sinclair</h1>
+	<ul>
+		<li>general@ardensinclair.com</li>
+		<li>(306) 737-5563</li>
+		<li>Vancouver, BC</li>
+	</ul>
+	<section>
+		<h2>Work Experience</h2>
+		{jobs.map(job => <Job job={job} />)}
+	</section>
+	<section>
+		<h2>Education</h2>
+		{education.map(program => <Program program={program} />)}
+	</section>
+	<section>
+		<h2>Skills & Interests</h2>
+	</section>
+</LetterPage>
+
+<style>
+	h1 {
+		font-size: 2.5rem;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		margin-top: 0.25in;
+		margin-bottom: 0.15in;
+		text-transform: uppercase;
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+		display: flex;
+		gap: 2rem;
+	}
+
+	li:first-child {
+		display: inline;
+	}
+</style>

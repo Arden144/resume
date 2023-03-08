@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	program: CollectionEntry<"education">;
+}
+
+const { program } = Astro.props;
+const { Content } = await program.render();
+---
+
+<div>
+	<div class="info">
+		<h3>{program.data.school}</h3>
+		<h3>{program.data.graduation}</h3>
+		<h4>{program.data.program}</h4>
+		<h4>{program.data.location}</h4>
+	</div>
+	<Content />
+</div>
+
+<style>
+	.info {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.info > :nth-child(2n + 1) {
+		justify-self: start;
+	}
+
+	.info > :nth-child(2n) {
+		justify-self: end;
+	}
+
+	h4 {
+		font-weight: normal;
+		font-style: italic;
+	}
+</style>
