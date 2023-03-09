@@ -2,19 +2,17 @@
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-	program: CollectionEntry<"education">;
+	project: CollectionEntry<"projects">;
 }
 
-const { program } = Astro.props;
-const { Content } = await program.render();
+const { project } = Astro.props;
+const { Content } = await project.render();
 ---
 
 <div>
 	<div class="info">
-		<h3>{program.data.school}</h3>
-		<h3>{program.data.graduation}</h3>
-		<h4>{program.data.program}</h4>
-		<h4>{program.data.location}</h4>
+		<h3>{project.data.name}</h3>
+		<h4>{project.data.language}</h4>
 	</div>
 	<Content />
 </div>

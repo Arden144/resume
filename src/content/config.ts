@@ -19,6 +19,14 @@ const educationCollection = defineCollection({
 	}),
 });
 
+const projectCollection = defineCollection({
+	schema: z.object({
+		name: z.string(),
+		language: z.string(),
+		priority: z.number().optional(),
+	}),
+});
+
 const otherCollection = defineCollection({
 	schema: z.object({
 		name: z.string(),
@@ -29,5 +37,6 @@ const otherCollection = defineCollection({
 export const collections = {
 	jobs: jobCollection,
 	education: educationCollection,
+	projects: projectCollection,
 	other: otherCollection,
 };

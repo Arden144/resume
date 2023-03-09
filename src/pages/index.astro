@@ -2,17 +2,9 @@
 import { getCollection } from "astro:content";
 import Job from "../components/Job.astro";
 import Program from "../components/Program.astro";
+import Project from "../components/Project.astro";
+import { getJobs } from "../content/query";
 import LetterPage from "../layouts/LetterPage.astro";
-
-const groupBy = <T, K>(list: T[], selector: (entry: T) => K): [K, T[]][] => {
-	const groups = new Map<K, T[]>();
-	list.forEach(entry => {
-		const key = selector(entry);
-		const group = groups.get(key);
-		group ? group.push(entry) : groups.set(key, [entry]);
-	});
-	return [...groups.entries()];
-};
 
 const joinLocalized = (list: string[], normalSeparator: string, lastSeparator: string): string => {
 	let result = "";
@@ -29,8 +21,11 @@ const joinLocalized = (list: string[], normalSeparator: string, lastSeparator: s
 	return result;
 };
 
-const jobs = groupBy(await getCollection("jobs"), job => job.data.company);
+const jobs = await getJobs();
 const education = await getCollection("education");
+const projects = (await getCollection("projects")).sort(
+	(a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0),
+);
 const other = (await getCollection("other")).sort(
 	(a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0),
 );
@@ -51,11 +46,15 @@ const otherHeading = joinLocalized(
 	</ul>
 	<section>
 		<h2>Work Experience</h2>
-		{jobs.map(([company, positions]) => <Job company={company} positions={positions} />)}
+		{jobs.map(job => <Job job={job} />)}
 	</section>
 	<section>
 		<h2>Education</h2>
 		{education.map(program => <Program program={program} />)}
+	</section>
+	<section>
+		<h2>Software Projects</h2>
+		{projects.map(project => <Project project={project} />)}
 	</section>
 	<section>
 		<h2>{otherHeading}</h2>
@@ -93,7 +92,7 @@ const otherHeading = joinLocalized(
 		padding: 0;
 		margin: 0;
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 	}
 
 	.contact li:first-child {
@@ -104,7 +103,9 @@ const otherHeading = joinLocalized(
 <style is:global>
 	.horizontal-lists ul {
 		display: inline-flex;
+		flex-wrap: wrap;
 		list-style-type: "; ";
+		list-style-position: inside;
 		padding-left: 0.5rem;
 	}
 

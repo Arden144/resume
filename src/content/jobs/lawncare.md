@@ -1,6 +1,6 @@
 ---
 company: Self-employed
-position: Lawn care specialist
+position: Lawn care
 start: June 2016
 end: September 2021
 location: Regina, SK

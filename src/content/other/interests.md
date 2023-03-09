@@ -1,5 +1,9 @@
 ---
 name: Interests
 ---
-
-- I have none
+- Hiking
+- Cycling
+- Programming
+- Guitar
+- Travel
+- Casual Gaming
