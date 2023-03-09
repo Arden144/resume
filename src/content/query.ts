@@ -36,5 +36,4 @@ export const getJobs = async (): Promise<Job[]> =>
 				.reverse()[0],
 			end: positions.map(p => chrono.parseDate(p.data.end)).sort()[0],
 		}))
-		.sort((a, b) => a.end.getTime() - b.end.getTime())
-		.reverse();
+		.sort((a, b) => b.end.getTime() - a.end.getTime());
