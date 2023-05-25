@@ -1,113 +1,113 @@
 ---
-import "@fontsource/noto-serif-georgian/variable.css";
+import "@fontsource-variable/noto-serif-georgian";
 ---
 
 <script>
-	const pageMargin = 2; // rem
-	const page = document.querySelector("article")!;
+    const pageMargin = 2; // rem
+    const page = document.querySelector("article")!;
 
-	const rootFontSize = +window.getComputedStyle(document.documentElement).fontSize.slice(0, -2);
-	const margin = rootFontSize * pageMargin;
+    const rootFontSize = +window.getComputedStyle(document.documentElement).fontSize.slice(0, -2);
+    const margin = rootFontSize * pageMargin;
 
-	const pageRect = page.getBoundingClientRect();
-	const pageWidth = pageRect.width + 2 * margin;
-	const pageHeight = pageRect.height + 2 * margin;
+    const pageRect = page.getBoundingClientRect();
+    const pageWidth = pageRect.width + 2 * margin;
+    const pageHeight = pageRect.height + 2 * margin;
 
-	function resize() {
-		const viewWidth = window.innerWidth;
-		const viewHeight = window.innerHeight;
+    function resize() {
+        const viewWidth = window.innerWidth;
+        const viewHeight = window.innerHeight;
 
-		const widthDelta = viewWidth / pageWidth;
-		const heightDelta = viewHeight / pageHeight;
+        const widthDelta = viewWidth / pageWidth;
+        const heightDelta = viewHeight / pageHeight;
 
-		const minDelta = Math.min(widthDelta, heightDelta);
+        const minDelta = Math.min(widthDelta, heightDelta);
 
-		if (minDelta < 1) {
-			page.style.transform = `scale(${minDelta})`;
-		} else {
-			page.style.transform = "";
-		}
-	}
+        if (minDelta < 1) {
+            page.style.transform = `scale(${minDelta})`;
+        } else {
+            page.style.transform = "";
+        }
+    }
 
-	let timeout: number | undefined;
-	window.addEventListener("resize", () => {
-		// clearTimeout(timeout);
-		// timeout = setTimeout(resize, 150);
-		resize();
-	});
+    let timeout: number | undefined;
+    window.addEventListener("resize", () => {
+        // clearTimeout(timeout);
+        // timeout = setTimeout(resize, 150);
+        resize();
+    });
 
-	resize();
+    resize();
 </script>
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Astro</title>
-	</head>
-	<body>
-		<article>
-			<slot />
-		</article>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Astro</title>
+    </head>
+    <body>
+        <article>
+            <slot />
+        </article>
+    </body>
 </html>
 
 <style is:global>
-	* {
-		box-sizing: border-box;
-	}
+    * {
+        box-sizing: border-box;
+    }
 
-	html {
-		font-size: 87.5%;
-		font-family: "Noto Serif GeorgianVariable";
-	}
+    html {
+        font-size: 87.5%;
+        font-family: "Noto Serif Georgian Variable";
+    }
 
-	body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: black;
-	}
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+    }
 
-	html,
-	body {
-		height: 100%;
-		margin: 0;
-		overflow: hidden;
-	}
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
 
-	article {
-		width: 8.5in;
-		height: 11in;
-		flex-shrink: 0;
-		background-color: white;
-		padding: 0.5in;
-	}
+    article {
+        width: 8.5in;
+        height: 11in;
+        flex-shrink: 0;
+        background-color: white;
+        padding: 0.5in;
+    }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5 {
-		margin: 0;
-	}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin: 0;
+    }
 
-	ul {
-		margin-top: 0;
-		padding-left: 1.3rem;
-	}
+    ul {
+        margin-top: 0;
+        padding-left: 1.3rem;
+    }
 
-	section > h2 {
-		border-bottom: 1px solid black;
-	}
+    section > h2 {
+        border-bottom: 1px solid black;
+    }
 
-	@media only print {
-		article {
-			height: 100%;
-			width: 100%;
-			margin: 0;
-			transform: none !important;
-		}
-	}
+    @media only print {
+        article {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            transform: none !important;
+        }
+    }
 </style>

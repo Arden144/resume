@@ -1,10 +1,13 @@
 ---
 import type { Job } from "../content/query";
 
-const dateFormat = { month: "long", year: "numeric" } satisfies Intl.DateTimeFormatOptions;
+const dateFormat = {
+    month: "long",
+    year: "numeric",
+} satisfies Intl.DateTimeFormatOptions;
 
 interface Props {
-	job: Job;
+    job: Job;
 }
 
 const { job } = Astro.props;
@@ -18,48 +21,48 @@ const roles = multi ? "Various roles" : job.positions[0].data.position;
 ---
 
 <div>
-	<div class="info">
-		<h3>{job.company}</h3>
-		<h3>{start} – {end}</h3>
-		<h4>{roles}</h4>
-		<h4>{locations}</h4>
-	</div>
-	{
-		job.positions.map(async entry => {
-			const { Content } = await entry.render();
-			return (
-				<>
-					{multi && (
-						<div class="info">
-							<h4>{entry.data.position}</h4>
-							<h4>
-								{entry.data.start} – {entry.data.end}
-							</h4>
-						</div>
-					)}
-					<Content />
-				</>
-			);
-		})
-	}
+    <div class="info">
+        <h3>{job.company}</h3>
+        <h3>{start} – {end}</h3>
+        <h4>{roles}</h4>
+        <h4>{locations}</h4>
+    </div>
+    {
+        job.positions.map(async entry => {
+            const { Content } = await entry.render();
+            return (
+                <>
+                    {multi && (
+                        <div class="info">
+                            <h4>{entry.data.position}</h4>
+                            <h4>
+                                {entry.data.start} – {entry.data.end}
+                            </h4>
+                        </div>
+                    )}
+                    <Content />
+                </>
+            );
+        })
+    }
 </div>
 
 <style>
-	.info {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
+    .info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 
-	.info > :nth-child(2n + 1) {
-		justify-self: start;
-	}
+    .info > :nth-child(2n + 1) {
+        justify-self: start;
+    }
 
-	.info > :nth-child(2n) {
-		justify-self: end;
-	}
+    .info > :nth-child(2n) {
+        justify-self: end;
+    }
 
-	h4 {
-		font-weight: normal;
-		font-style: italic;
-	}
+    h4 {
+        font-weight: normal;
+        font-style: italic;
+    }
 </style>

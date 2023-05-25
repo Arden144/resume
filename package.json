@@ -1,17 +1,37 @@
 {
-  "name": "resume",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@fontsource/noto-serif-georgian": "^4.5.13",
-    "astro": "^2.1.2",
-    "chrono-node": "^2.5.1"
-  }
+    "name": "resume",
+    "type": "module",
+    "version": "0.0.2",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@fontsource-variable/noto-serif-georgian": "^5.0.1",
+        "astro": "^2.5.5",
+        "chrono-node": "^2.6.3"
+    },
+    "devDependencies": {
+        "prettier": "^2.8.8",
+        "prettier-plugin-astro": "^0.9.0"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "arrowParens": "avoid",
+        "printWidth": 100,
+        "plugins": [
+            "./node_modules/prettier-plugin-astro"
+        ],
+        "overrides": [
+            {
+                "files": "*.astro",
+                "options": {
+                    "parser": "astro"
+                }
+            }
+        ]
+    }
 }

@@ -3,17 +3,19 @@ name: Skills
 priority: 1
 ---
 
-- React
-- HTML
-- CSS
-- TypeScript
-- JavaScript
-- Go
-- Rust
-- Python
-- Swift
-- Java
-- Kotlin
-- C++
-- C
-- Haskell
+-   React
+-   Next.js
+-   Svelte
+-   HTML
+-   CSS
+-   TypeScript
+-   JavaScript
+-   Rust
+-   Go
+-   Python
+-   Swift
+-   Java
+-   Kotlin
+-   C++
+-   C
+-   Haskell
