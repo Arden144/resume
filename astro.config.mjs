@@ -4,7 +4,19 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
     scopedStyleStrategy: "class",
     compressHTML: true,
-    experimental: {
-        inlineStylesheets: "auto",
+    build: {
+        inlineStylesheets: "auto"
     },
+    vite: {
+        build: {
+            cssMinify: "lightningcss"
+        },
+        css: {
+            transformer: "lightningcss"
+        }
+    },
+    experimental: {
+        assets: true,
+        optimizeHoistedScript: true
+    }
 });

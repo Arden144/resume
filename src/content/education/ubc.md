@@ -1,6 +1,6 @@
 ---
 school: University of British Columbia
-program: Bachelor of Science, Year 2
-graduation: April 2025
+program: Bachelor of Science, Computer Science, Year 3
+graduation: April 2026
 location: Vancouver, BC
 ---

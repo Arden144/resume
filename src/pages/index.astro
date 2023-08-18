@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Job from "../components/Job.astro";
 import Program from "../components/Program.astro";
 import Project from "../components/Project.astro";
-import { getJobs } from "../content/query";
+import { getJobs } from "../queries";
 import LetterPage from "../layouts/LetterPage.astro";
 
 const joinLocalized = (list: string[], normalSeparator: string, lastSeparator: string): string => {
