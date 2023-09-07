@@ -1,0 +1,26 @@
+---
+import logo from "./logo.svg";
+---
+
+<div>
+    <h2><b>UBC</b> Science Co-op</h2>
+    <img src={logo.src} alt="UBC Science Co-op Logo">
+</div>
+
+<style>
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 1rem;
+    }
+
+    img {
+        height: 100%;
+        padding: calc(var(--h1-font-size) * 0.15) 0;
+    }
+
+    h2 {
+        font-family: "Whitney SSm A";
+    }
+</style>

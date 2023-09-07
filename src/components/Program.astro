@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { Program } from "../queries";
 
 interface Props {
-    program: CollectionEntry<"education">;
+    program: Program;
 }
 
 const { program } = Astro.props;
@@ -11,10 +11,10 @@ const { Content } = await program.render();
 
 <div>
     <div class="info">
-        <h3>{program.data.school}</h3>
-        <h3>{program.data.graduation}</h3>
-        <h4>{program.data.program}</h4>
-        <h4>{program.data.location}</h4>
+        <h5>{program.data.school}</h5>
+        <h5>{program.dates}</h5>
+        <h6>{program.data.program}</h6>
+        <h6>{program.data.location}</h6>
     </div>
     <Content />
 </div>
@@ -31,10 +31,5 @@ const { Content } = await program.render();
 
     .info > :nth-child(2n) {
         justify-self: end;
-    }
-
-    h4 {
-        font-weight: normal;
-        font-style: italic;
     }
 </style>

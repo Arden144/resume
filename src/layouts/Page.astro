@@ -1,5 +1,8 @@
 ---
 import "@fontsource-variable/noto-serif-georgian";
+import "../whitney.css";
+
+let showUnsafeArea = false;
 ---
 
 <script>
@@ -29,12 +32,7 @@ import "@fontsource-variable/noto-serif-georgian";
         }
     }
 
-    let timeout: number | undefined;
-    window.addEventListener("resize", () => {
-        // clearTimeout(timeout);
-        // timeout = setTimeout(resize, 150);
-        resize();
-    });
+    window.addEventListener("resize", resize);
 
     resize();
 </script>
@@ -49,17 +47,25 @@ import "@fontsource-variable/noto-serif-georgian";
     <body>
         <article>
             <slot />
+            {showUnsafeArea && <div class="unsafe-area"></div>}
         </article>
     </body>
 </html>
 
 <style is:global>
+    :root {
+        --h1-font-size: 3rem;
+        --heading-top-padding: 1rem;
+        --heading-bottom-padding: 0.75rem;
+        --unsafe-area-color: #ff000026;
+    }
+
     * {
         box-sizing: border-box;
     }
 
     html {
-        font-size: 87.5%;
+        font-size: 14px;
         font-family: "Noto Serif Georgian Variable";
     }
 
@@ -78,6 +84,7 @@ import "@fontsource-variable/noto-serif-georgian";
     }
 
     article {
+        position: relative;
         width: 8.5in;
         height: 11in;
         flex-shrink: 0;
@@ -89,16 +96,44 @@ import "@fontsource-variable/noto-serif-georgian";
     h2,
     h3,
     h4,
-    h5 {
+    h5,
+    h6 {
         margin: 0;
+        line-height: 1.3;
+    }
+
+    h1 {
+        font-size: var(--h1-font-size);
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        font-weight: normal;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        margin-top: var(--heading-top-padding);
+        margin-bottom: var(--heading-bottom-padding);
+        text-transform: uppercase;
+    }
+
+    h5 {
+        font-size: 1.17rem;
+    }
+
+    h6 {
+        font-size: 1rem;
+        font-weight: normal;
+        font-style: italic;
     }
 
     ul {
         margin-top: 0;
-        padding-left: 1.3rem;
+        padding-left: 1rem;
     }
 
-    section > h2 {
+    section > :first-child {
         border-bottom: 1px solid black;
     }
 
@@ -109,5 +144,15 @@ import "@fontsource-variable/noto-serif-georgian";
             margin: 0;
             transform: none !important;
         }
+    }
+
+    .unsafe-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: 0.5in solid var(--unsafe-area-color);
+        border-image: repeating-linear-gradient(45deg, transparent, transparent 5px, var(--unsafe-area-color) 6px, var(--unsafe-area-color) 15px, transparent 16px, transparent 20px) 50/0.5in;
     }
 </style>

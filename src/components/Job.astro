@@ -22,10 +22,10 @@ const roles = multi ? "Various roles" : job.positions[0].data.position;
 
 <div>
     <div class="info">
-        <h3>{job.company}</h3>
-        <h3>{start} – {end}</h3>
-        <h4>{roles}</h4>
-        <h4>{locations}</h4>
+        <h5>{job.company}</h5>
+        <h5>{start} – {end}</h6>
+        <h6>{roles}</h6>
+        <h6>{locations}</h6>
     </div>
     {
         job.positions.map(async entry => {
@@ -34,10 +34,10 @@ const roles = multi ? "Various roles" : job.positions[0].data.position;
                 <>
                     {multi && (
                         <div class="info">
-                            <h4>{entry.data.position}</h4>
-                            <h4>
+                            <h6>{entry.data.position}</h6>
+                            <h6>
                                 {entry.data.start} – {entry.data.end}
-                            </h4>
+                            </h6>
                         </div>
                     )}
                     <Content />
@@ -59,10 +59,5 @@ const roles = multi ? "Various roles" : job.positions[0].data.position;
 
     .info > :nth-child(2n) {
         justify-self: end;
-    }
-
-    h4 {
-        font-weight: normal;
-        font-style: italic;
     }
 </style>

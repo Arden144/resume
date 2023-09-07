@@ -15,3 +15,4 @@ Array.prototype.groupBy = function <T, K>(this: T[], selector: (value: T) => K):
 };
 
 export * from "./jobs";
+export * from "./programs";

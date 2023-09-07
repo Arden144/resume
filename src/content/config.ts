@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const jobCollection = defineCollection({
+const jobs = defineCollection({
     schema: z.object({
         company: z.string(),
         position: z.string(),
@@ -10,33 +10,41 @@ const jobCollection = defineCollection({
     }),
 });
 
-const educationCollection = defineCollection({
-    schema: z.object({
-        school: z.string(),
-        program: z.string(),
-        graduation: z.string(),
-        location: z.string(),
-    }),
+const education = defineCollection({
+    schema: z.union([
+        z.object({
+            school: z.string(),
+            program: z.string(),
+            graduation: z.string(),
+            location: z.string(),
+        }),
+        z.object({
+            school: z.string(),
+            program: z.string(),
+            start: z.string(),
+            end: z.string(),
+            location: z.string()
+        })
+    ]),
 });
 
-const projectCollection = defineCollection({
+const projects = defineCollection({
     schema: z.object({
         name: z.string(),
-        language: z.string(),
+        languages: z.string(),
         priority: z.number().optional(),
     }),
 });
 
-const otherCollection = defineCollection({
+const skills = defineCollection({
     schema: z.object({
-        name: z.string(),
-        priority: z.number().optional(),
-    }),
-});
+        category: z.string()
+    })
+})
 
 export const collections = {
-    jobs: jobCollection,
-    education: educationCollection,
-    projects: projectCollection,
-    other: otherCollection,
+    jobs,
+    education,
+    projects,
+    skills,
 };

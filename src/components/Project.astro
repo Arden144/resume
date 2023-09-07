@@ -11,8 +11,8 @@ const { Content } = await project.render();
 
 <div>
     <div class="info">
-        <h3>{project.data.name}</h3>
-        <h4>{project.data.language}</h4>
+        <h5>{project.data.name}</h5>
+        <h6>{project.data.languages}</h6>
     </div>
     <Content />
 </div>
@@ -20,19 +20,7 @@ const { Content } = await project.render();
 <style>
     .info {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .info > :nth-child(2n + 1) {
-        justify-self: start;
-    }
-
-    .info > :nth-child(2n) {
-        justify-self: end;
-    }
-
-    h4 {
-        font-weight: normal;
-        font-style: italic;
+        grid-template-columns: repeat(2, auto);
+        justify-content: space-between;
     }
 </style>
