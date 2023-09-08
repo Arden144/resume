@@ -1,0 +1,43 @@
+name: "Generate Resume PDF"
+on: 
+    - push
+jobs:
+    generate:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+              name: Checkout
+
+            - uses: actions/setup-node@v3
+              name: Install Node
+              with:
+                  node-version: 18
+            
+            - uses: pnpm/action-setup@v2
+              name: Install pnpm
+
+            - shell: bash
+              name: Get pnpm store directory
+              run: |
+                echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+            - uses: actions/cache@v3
+              name: Setup pnpm cache
+              with:
+                path: ${{ env.STORE_PATH }}
+                key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                restore-keys: |
+                    ${{ runner.os }}-pnpm-store-
+            
+            - run: pnpm install
+              name: Install dependencies
+            
+            - run: pnpm run generate
+              name: Generate PDF
+            
+            - uses: actions/upload-artifact@v3
+              name: lkjasdf
+              with:
+                name: Resume
+                path: resume.pdf
