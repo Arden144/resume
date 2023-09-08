@@ -37,9 +37,9 @@ const main = async () => {
     const server = await preview(config);
 
     const pdf = await generatePdf(await browser, `http://${server.host}:${server.port}`);
-    await writeFile(new URL("./resume.pdf", baseDir), pdf);
 
     await Promise.all([
+        writeFile(new URL("./resume.pdf", baseDir), pdf),
         server.stop(),
         (await browser).close()
     ]);
