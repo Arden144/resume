@@ -36,7 +36,7 @@ jobs:
                 path: ~/.cache/puppeteer
                 key: ${{ runner.os }}-puppeteer-${{ hashFiles('**/pnpm-lock.yaml') }}
                 restore-keys: |
-                    ${{ runner.os }}-pnpm-store-
+                    ${{ runner.os }}-puppeteer-
             
             - run: pnpm install
               name: Install dependencies
