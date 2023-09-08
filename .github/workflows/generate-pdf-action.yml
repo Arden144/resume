@@ -30,6 +30,11 @@ jobs:
                 restore-keys: |
                     ${{ runner.os }}-pnpm-store-
             
+            - uses: actions/cache@v3
+              name: Setup puppeteer cache
+              with:
+                path: ~/.cache/puppeteer
+            
             - run: pnpm install
               name: Install dependencies
             
