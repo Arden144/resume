@@ -37,7 +37,7 @@ jobs:
               name: Generate PDF
             
             - uses: actions/upload-artifact@v3
-              name: lkjasdf
+              name: Upload PDF
               with:
                 name: Resume
                 path: resume.pdf
