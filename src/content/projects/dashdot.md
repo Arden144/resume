@@ -5,5 +5,3 @@ priority: 10
 ---
 
 - A novel chat app for connecting with those closest to you through morse code messages.
-- Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
-- Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
