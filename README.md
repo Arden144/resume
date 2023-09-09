@@ -1,5 +1,7 @@
 # Resume Builder
 
+Build a professional resume easily using only markdown.
+
 ## 🚀 Customization
 
 ```
@@ -24,10 +26,10 @@ All commands are run from the root of the project, from a terminal:
 
 | Command             | Action                                           |
 | :------------------ | :----------------------------------------------- |
-| `pnpm install`      | Installs dependencies                            |
-| `pnpm dev`          | Starts local dev server at `localhost:3000`      |
-| `pnpm build`        | Build your production site to `./dist/`          |
-| `pnpm preview`      | Preview your build locally, before deploying     |
-| `pnpm generate`     | Runs a production build and generates a PDF      |
-| `pnpm astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro --help` | Get help using the Astro CLI                     |
+| `bun i`             | Installs dependencies                            |
+| `bun dev`           | Starts local dev server at `localhost:4321`      |
+| `bun build`         | Builds your resume preview to `./dist/`          |
+| `bun preview`       | Hosts your resume website at `localhost:4321`    |
+| `bun generate`      | Runs a production build and generates a PDF      |
+| `bun astro ...`     | Run CLI commands like `astro add`, `astro check` |
+| `bun astro --help`  | Get help using the Astro CLI                     |
