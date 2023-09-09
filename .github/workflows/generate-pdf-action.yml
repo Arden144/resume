@@ -1,51 +1,48 @@
 name: "Generate Resume PDF"
 on: 
-    - push
+  - push
 jobs:
-    generate:
-        runs-on: ubuntu-latest
+  generate:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3
-              name: Checkout
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
 
-            - uses: actions/setup-node@v3
-              name: Install Node
-              with:
-                  node-version: 18
-            
-            - uses: pnpm/action-setup@v2
-              name: Install pnpm
+      - uses: oven-sh/setup-bun@v1
+        name: Install Bun
+        with:
+          bun-version: latest
 
-            - shell: bash
-              name: Get pnpm store directory
-              run: |
-                echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - shell: bash
+        name: Get bun cache directory
+        run: |
+          echo "STORE_PATH=$(bun pm cache)" >> $GITHUB_ENV
 
-            - uses: actions/cache@v3
-              name: Setup pnpm cache
-              with:
-                path: ${{ env.STORE_PATH }}
-                key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-                restore-keys: |
-                    ${{ runner.os }}-pnpm-store-
-            
-            - uses: actions/cache@v3
-              name: Setup puppeteer cache
-              with:
-                path: ~/.cache/puppeteer
-                key: ${{ runner.os }}-puppeteer-${{ hashFiles('**/pnpm-lock.yaml') }}
-                restore-keys: |
-                    ${{ runner.os }}-puppeteer-
-            
-            - run: pnpm install
-              name: Install dependencies
-            
-            - run: pnpm run generate
-              name: Generate PDF
-            
-            - uses: actions/upload-artifact@v3
-              name: Upload PDF
-              with:
-                name: Resume
-                path: resume.pdf
+      - uses: actions/cache@v3
+        name: Setup bun cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-bun-cache-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-cache-
+      
+      - uses: actions/cache@v3
+        name: Setup puppeteer cache
+        with:
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-puppeteer-
+      
+      - run: bun i
+        name: Install dependencies
+      
+      - run: bun generate
+        name: Generate PDF
+      
+      - uses: actions/upload-artifact@v3
+        name: Upload PDF
+        with:
+          name: Resume
+          path: resume.pdf

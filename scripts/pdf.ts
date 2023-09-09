@@ -1,17 +1,8 @@
-// @ts-check
+import { build, preview, type AstroInlineConfig } from "astro";
+import { write, fileURLToPath } from "bun";
+import { launch, type Browser } from "puppeteer";
 
-import { build, preview } from "astro";
-import { fileURLToPath } from "node:url";
-import { launch } from "puppeteer";
-import { writeFile } from "node:fs/promises";
-
-/**
- * 
- * @param {import("puppeteer").Browser} browser 
- * @param {string} url
- * @returns {Promise<Buffer>}
- */
-const generatePdf = async (browser, url) => {
+const generatePdf = async (browser: Browser, url: string): Promise<Buffer> => {
     const page = await browser.newPage();
 
     await page.goto(url);
@@ -26,10 +17,9 @@ const generatePdf = async (browser, url) => {
 const main = async () => {
     const baseDir = new URL('..', import.meta.url);
 
-    /** @satisfies {import("astro").AstroInlineConfig} */
     const config = {
         root: fileURLToPath(baseDir)
-    };
+    } satisfies AstroInlineConfig;
 
     const browser = launch({ headless: "new" });
 
@@ -39,7 +29,7 @@ const main = async () => {
     const pdf = await generatePdf(await browser, `http://${server.host}:${server.port}`);
 
     await Promise.all([
-        writeFile(new URL("./resume.pdf", baseDir), pdf),
+        write(new URL("./resume.pdf", baseDir), pdf),
         server.stop(),
         (await browser).close()
     ]);

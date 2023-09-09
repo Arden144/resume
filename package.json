@@ -1,46 +1,42 @@
 {
-    "name": "resume",
-    "type": "module",
-    "version": "0.0.2",
-    "packageManager": "pnpm@8.7.4",
-    "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "check": "astro check",
-        "generate": "node scripts/pdf.js"
-    },
-    "engines": {
-        "node": ">=18.0.0"
-    },
-    "dependencies": {
-        "@astrojs/check": "^0.2.0",
-        "@fontsource-variable/noto-serif-georgian": "^5.0.8",
-        "astro": "^3.0.5",
-        "chrono-node": "^2.6.5"
-    },
-    "devDependencies": {
-        "@types/node": "^20.5.9",
-        "lightningcss": "^1.21.7",
-        "prettier": "^3.0.3",
-        "prettier-plugin-astro": "^0.12.0",
-        "puppeteer": "^21.1.1",
-        "typescript": "^5.2.2"
-    },
-    "prettier": {
-        "tabWidth": 4,
-        "arrowParens": "avoid",
-        "printWidth": 100,
-        "plugins": [
-            "./node_modules/prettier-plugin-astro"
-        ],
-        "overrides": [
-            {
-                "files": "*.astro",
-                "options": {
-                    "parser": "astro"
-                }
-            }
-        ]
-    }
+  "name": "resume",
+  "type": "module",
+  "version": "0.0.2",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "generate": "bun scripts/pdf.ts"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.2.0",
+    "@fontsource-variable/noto-serif-georgian": "^5.0.8",
+    "astro": "^3.0.5",
+    "chrono-node": "^2.6.5"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.1",
+    "lightningcss": "^1.21.7",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "puppeteer": "^21.1.1",
+    "typescript": "^5.2.2"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "plugins": [
+      "./node_modules/prettier-plugin-astro"
+    ],
+    "overrides": [
+      {
+        "files": "*.astro",
+        "options": {
+          "parser": "astro"
+        }
+      }
+    ]
+  }
 }
