@@ -15,3 +15,5 @@ category: Languages
 - C++
 - C
 - Haskell
+- R
+- Protobuf

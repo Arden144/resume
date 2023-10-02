@@ -6,19 +6,21 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const { name, languages, link } = project.data;
 const { Content } = await project.render();
+
+const cleanURL = (url: URL): string => url.hostname + url.pathname
 ---
 
 <div>
-    <div class="info">
-        <h5>{project.data.name}</h5>
-        <h6>{project.data.languages}</h6>
-    </div>
-    <Content />
+    <h5>{name}</h5>
+    <h6>{languages}</h6>
+    {link && <h6><a href={link}>{cleanURL(link)}</a></h6>}
 </div>
+<Content />
 
 <style>
-    .info {
+    div {
         display: grid;
         grid-template-columns: repeat(2, auto);
         justify-content: space-between;

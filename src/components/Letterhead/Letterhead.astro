@@ -5,7 +5,7 @@ import logo from "./logo.svg";
 <div>
     <h2><b>UBC</b> Science Co-op</h2>
     <img src={logo.src} alt="UBC Science Co-op Logo">
-    <ul class="contact">
+    <ul>
         <li><a href="tel:6048229677">Tel: (604) 822-9677</a></li>
         <li><a href="tel:6048229676">Fax: (604) 822-9676</a></li>
         <li><a href="mailto:science.coop@ubc.ca">science.coop@ubc.ca</a></li>
@@ -16,9 +16,9 @@ import logo from "./logo.svg";
 <style>
     div {
         display: grid;
-        grid-template-rows: 4rem auto;
+        grid-template-rows: 3rem auto;
         grid-template-columns: auto min-content;
-        column-gap: 1rem;
+        column-gap: 0.75rem;
         align-items: end;
     }
 
@@ -29,12 +29,12 @@ import logo from "./logo.svg";
     h2 {
         font-family: "Whitney SSm A";
         text-align: right;
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.3rem;
         border-bottom: 1px solid black;
     }
 
     ul {
-        margin-top: 0.4rem;
+        margin-top: 0.3rem;
         display: flex;
         justify-content: end;
         gap: 0.3rem;

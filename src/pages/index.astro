@@ -31,7 +31,7 @@ const projects = (await getCollection("projects")).sort(
         <ul>{skills.map(async entry => {
             const { Content } = await entry.render();
             return (
-                <li class="skills">
+                <li class="skill">
                     <b>{entry.data.category}:</b>
                     <Content />
                 </li>
@@ -68,7 +68,7 @@ const projects = (await getCollection("projects")).sort(
         }
     }
 
-    .skills {
+    .skill {
         display: flex;
 
         & > :global(ul) {
@@ -76,6 +76,7 @@ const projects = (await getCollection("projects")).sort(
             display: inline-flex;
             flex-wrap: wrap;
             padding-left: 0.5rem;
+            margin-bottom: 0;
 
             & > :global(li) {
                 padding-right: 0.25rem;
