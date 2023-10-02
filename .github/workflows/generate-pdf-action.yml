@@ -38,11 +38,12 @@ jobs:
       - run: bun i
         name: Install dependencies
       
-      - run: bun generate
-        name: Generate PDF
+      - name: Generate PDF
+        run: |
+          echo "$OUTPUT_PATH=$(bun generate ${{ github.event.head_commit.timestamp }})" >> $GITHUB_ENV
+        
       
       - uses: actions/upload-artifact@v3
         name: Upload PDF
         with:
-          name: Resume
-          path: resume.pdf
+          path: ${{ env.OUTPUT_PATH }}
