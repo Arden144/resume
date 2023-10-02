@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "generate": "bun scripts/pdf.ts"
+    "generate": "bun scripts/pdf.ts",
+    "postinstall": "bun node_modules/puppeteer/install.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.2.0",
@@ -23,6 +24,9 @@
     "puppeteer": "^21.1.1",
     "typescript": "^5.2.2"
   },
+  "trustedDependencies": [
+    "puppeteer"
+  ],
   "prettier": {
     "tabWidth": 4,
     "arrowParens": "avoid",
