@@ -40,9 +40,8 @@ jobs:
       
       - name: Generate PDF
         run: |
-          echo "$OUTPUT_PATH=$(bun generate ${{ github.event.head_commit.timestamp }})" >> $GITHUB_ENV
+          echo "OUTPUT_PATH=$(bun generate --timestamp ${{ github.event.head_commit.timestamp }})" >> $GITHUB_ENV
         
-      
       - uses: actions/upload-artifact@v3
         name: Upload PDF
         with:
