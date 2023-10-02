@@ -45,4 +45,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         name: Upload PDF
         with:
+          name: Resume PDF
           path: ${{ env.OUTPUT_PATH }}
