@@ -35,7 +35,7 @@ const main = async () => {
     const [_args, kwargs] = parseArgs(process.argv.slice(2));
     const timestamp = typeof kwargs.timestamp === "string" ? new Date(kwargs.timestamp) : new Date();
     const year = timestamp.getFullYear().toString();
-    const month = timestamp.getMonth().toString().padStart(2, "0");
+    const month = (timestamp.getMonth() + 1).toString().padStart(2, "0");
     const date = timestamp.getDate().toString().padStart(2, "0");
 
     const baseDir = new URL('..', import.meta.url);
