@@ -4,4 +4,5 @@ link: https://github.com/arden144/axiom
 languages: Go, REST
 ---
 
-- An app to stream music in Discord voice calls using the Discord, YouTube, and Spotify APIs.
+- Discord bot that plays songs from a shared queue so you can enjoy music together with friends.
+- Uses the Spotify API to search for songs and plays audio from YouTube over Discord audio calls.
