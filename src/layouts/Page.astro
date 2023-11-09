@@ -1,16 +1,16 @@
 ---
 import "@fontsource-variable/noto-serif-georgian";
+import { Icon } from "astro-icon";
 import "../whitney.css";
-
-let showUnsafeArea = false;
 ---
 
 <script>
+    const $ = document.querySelector.bind(document);
     const pageMargin = 2; // rem
-    const page = document.querySelector("article")!;
+    const page = $("article")!;
 
     const rootFontSize = +window.getComputedStyle(document.documentElement).fontSize.slice(0, -2);
-    const margin = rootFontSize * pageMargin;
+    const margin = rootFontSize * pageMargin; // px
 
     const pageRect = page.getBoundingClientRect();
     const pageWidth = pageRect.width + 2 * margin;
@@ -25,16 +25,11 @@ let showUnsafeArea = false;
 
         const minDelta = Math.min(widthDelta, heightDelta);
 
-        if (minDelta < 1) {
-            page.style.transform = `scale(${minDelta})`;
-        } else {
-            page.style.transform = "";
-        }
+        page.style.transform = minDelta < 1 ? `scale(${minDelta})` : "";
     }
 
-    window.addEventListener("resize", resize);
-
     resize();
+    window.addEventListener("resize", resize);
 </script>
 
 <html lang="en">
@@ -44,24 +39,141 @@ let showUnsafeArea = false;
         <meta name="viewport" content="width=device-width" />
         <title>Resume</title>
     </head>
-    <body>
+    <body x-data="{ margins: false }">
         <article>
             <slot />
-            {showUnsafeArea && <div class="unsafe-area"></div>}
+            <div x-cloak x-show="margins" class="margins"></div>
         </article>
+        <div class="settings-group" tabindex="0" @click.outside="$el.blur()">
+            <Icon class="settings-button" name="mdi:menu" />
+            <div class="settings-dialog">
+                <h3>Settings</h3>
+                <span class="row">
+                    <label for="margins-toggle">Show Margins</label>
+                    <button id="margins-toggle" role="switch" :aria-checked="margins" @click="margins = !margins"></button>
+                </span>
+            </div>
+        </div>
     </body>
 </html>
+
+<style>
+    .margins {
+        display: block;
+        position: absolute;
+        inset: 0;
+        border: 0.5in solid var(--safe-area-color);
+        border-image: repeating-linear-gradient(45deg, transparent, transparent 5px, var(--safe-area-color) 6px, var(--safe-area-color) 15px, transparent 16px, transparent 20px) 50/0.5in;
+    }
+
+    .settings-button {
+        position: fixed;
+        bottom: 8px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        color: white;
+        background: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .settings-dialog {
+        display: none;
+        position: fixed;
+        bottom: 8px;
+        right: 8px;
+        width: 240px;
+        color: white;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background: rgba(0, 0, 0, 0.9);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+        & h3 {
+            text-align: center;
+        }
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 12px;
+    }
+
+    button[role="switch"] {
+        all: unset;
+        width: 40px;
+        height: 24px;
+        display: block;
+        padding: 2px;
+        border-radius: 24px;
+        overflow: hidden;
+        background-color: rgb(44, 44, 44);
+        transition: background-color 0.3s ease-in-out;
+
+        &::after {
+            content: "";
+            display: block;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            height: 100%;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            margin-left: 0;
+            transition: margin-left 0.3s ease-in-out;
+        }
+    }
+
+    .settings-group:focus-within {
+        & .settings-dialog {
+            display: block;
+        }
+
+        & .settings-button {
+            display: none;
+        }
+    }
+
+    button[role="switch"][aria-checked="true"] {
+        background-color: rgb(49, 209, 88);
+
+        &::after {
+            margin-left: calc(100% - 24px);
+        }
+    }
+
+    @media only print {
+        .settings-group {
+            display: none;
+        }
+
+        .margins {
+            display: none;
+        }
+    }
+</style>
 
 <style is:global>
     :root {
         --h1-font-size: 2rem;
         --section-padding: 0.75rem;
         --per-item-padding: 0.5rem;
-        --unsafe-area-color: #ff000026;
+        --safe-area-color: #ff000026;
     }
 
     * {
         box-sizing: border-box;
+    }
+
+    [x-cloak] {
+        display: none !important;
     }
 
     html {
@@ -150,15 +262,5 @@ let showUnsafeArea = false;
             margin: 0;
             transform: none !important;
         }
-    }
-
-    .unsafe-area {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border: 0.5in solid var(--unsafe-area-color);
-        border-image: repeating-linear-gradient(45deg, transparent, transparent 5px, var(--unsafe-area-color) 6px, var(--unsafe-area-color) 15px, transparent 16px, transparent 20px) 50/0.5in;
     }
 </style>

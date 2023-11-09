@@ -1,25 +1,24 @@
 import { defineConfig } from "astro/config";
 
+import alpinejs from "@astrojs/alpinejs";
+
 // https://astro.build/config
 export default defineConfig({
-    compressHTML: true,
+  vite: {
     build: {
-        inlineStylesheets: "auto",
+      cssMinify: "lightningcss"
     },
-    vite: {
-        build: {
-            cssMinify: "lightningcss"
-        },
-        css: {
-            transformer: "lightningcss",
-            lightningcss: {
-                drafts: {
-                    nesting: true
-                }
-            }
+    css: {
+      transformer: "lightningcss",
+      lightningcss: {
+        drafts: {
+          nesting: true
         }
-    },
-    experimental: {
-        optimizeHoistedScript: true,
+      }
     }
+  },
+  experimental: {
+    optimizeHoistedScript: true,
+  },
+  integrations: [alpinejs()]
 });

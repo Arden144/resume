@@ -1,7 +1,7 @@
 {
   "name": "resume",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -11,21 +11,27 @@
     "postinstall": "bun node_modules/puppeteer/install.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.2.0",
-    "@fontsource-variable/noto-serif-georgian": "^5.0.8",
-    "astro": "^3.0.5",
-    "chrono-node": "^2.6.5"
+    "@astrojs/alpinejs": "^0.3.1",
+    "@astrojs/check": "^0.3.1",
+    "@fontsource-variable/noto-serif-georgian": "^5.0.17",
+    "@types/alpinejs": "^3.0.0",
+    "alpinejs": "^3.0.0",
+    "astro": "^3.4.3",
+    "chrono-node": "^2.7.0"
   },
   "devDependencies": {
-    "bun-types": "^1.0.1",
-    "lightningcss": "^1.21.7",
+    "astro-icon": "^0.8.1",
+    "bun-types": "^1.0.10",
+    "lightningcss": "^1.22.1",
     "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.0",
-    "puppeteer": "^21.1.1",
+    "prettier-plugin-astro": "^0.12.1",
+    "puppeteer": "^21.5.0",
     "typescript": "^5.2.2"
   },
   "trustedDependencies": [
-    "puppeteer"
+    "puppeteer",
+    "sharp",
+    "lightningcss"
   ],
   "prettier": {
     "tabWidth": 4,
