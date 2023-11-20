@@ -1,5 +1,5 @@
 ---
-company: Captive Audience
+company: Captive Media
 position: VR Team Lead
 start: May 2022
 end: September 2022
