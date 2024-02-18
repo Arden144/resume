@@ -1,9 +1,13 @@
 import { defineConfig } from "astro/config";
 
 import alpinejs from "@astrojs/alpinejs";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    inlineStylesheets: 'always'
+  },
   vite: {
     build: {
       cssMinify: "lightningcss"
@@ -20,5 +24,5 @@ export default defineConfig({
   experimental: {
     optimizeHoistedScript: true,
   },
-  integrations: [alpinejs()]
+  integrations: [icon(), alpinejs()]
 });

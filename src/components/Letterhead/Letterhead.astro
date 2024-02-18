@@ -2,7 +2,7 @@
 import logo from "./logo.svg";
 ---
 
-<div>
+<aside>
     <h2><b>UBC</b> Science Co-op</h2>
     <img src={logo.src} alt="UBC Science Co-op Logo">
     <ul>
@@ -11,10 +11,11 @@ import logo from "./logo.svg";
         <li><a href="mailto:science.coop@ubc.ca">science.coop@ubc.ca</a></li>
         <li><a href="https://www.sciencecoop.ubc.ca">www.sciencecoop.ubc.ca</a></li>
     </ul>
-</div>
+</aside>
 
 <style>
-    div {
+    aside {
+        order: -1;
         display: grid;
         grid-template-rows: 3rem auto;
         grid-template-columns: auto min-content;

@@ -7,7 +7,7 @@ const generatePdf = async (browser: Browser, url: string): Promise<Buffer> => {
 
     await page.goto(url);
 
-    const pdf = await page.pdf({ format: "LETTER" });
+    const pdf = await page.pdf({ format: "letter" });
 
     await page.close();
 
@@ -48,7 +48,7 @@ const main = async () => {
         }
     } satisfies AstroInlineConfig;
 
-    const browser = launch({ headless: "new" });
+    const browser = launch({ headless: true });
 
     await build(config);
     const server = await preview(config);

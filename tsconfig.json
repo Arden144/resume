@@ -1,6 +1,10 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleDetection": "force",
         "moduleResolution": "Bundler"
     },
     "exclude": ["scripts"]

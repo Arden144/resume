@@ -17,7 +17,6 @@ const projects = (await getCollection("projects")).sort(
 
 <Page>
     <header>
-        <Letterhead />
         <h1>Arden Sinclair</h1>
         <ul class="contact">
             <li><a href="mailto:general@ardensinclair.com">general@ardensinclair.com</a></li>
@@ -25,6 +24,7 @@ const projects = (await getCollection("projects")).sort(
             <li><a href="tel:13067375563">(306) 737-5563</a></li>
             <li>Vancouver, BC</li>
         </ul>
+        <Letterhead />
     </header>
     <section>
         <h3>Technical Skills</h3>
@@ -43,20 +43,26 @@ const projects = (await getCollection("projects")).sort(
         {projects.map(project => <Project project={project} />)}
     </section>
     <section>
-        <h3>Work Experience</h3>
-        {jobs.map(job => <Job job={job} />)}
-    </section>
-    <section>
         <h3>Education</h3>
         {programs.map(program => <Program program={program} />)}
+    </section>
+    <section>
+        <h3>Work Experience</h3>
+        {jobs.map(job => <Job job={job} />)}
     </section>
 </Page>
 
 <style>
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+
     .contact {
         padding: 0;
         display: flex;
         gap: 0.3rem;
+        margin: 0;
 
         & > li {
             list-style-type: "| ";
@@ -82,7 +88,7 @@ const projects = (await getCollection("projects")).sort(
                 padding-right: 0.25rem;
 
                 &:not(:last-child)::after {
-                    content: ";";
+                    content: ",";
                 }
             }
         }
