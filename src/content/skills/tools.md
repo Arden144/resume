@@ -2,13 +2,12 @@
 category: Tools
 ---
 
+- Git
 - Docker
 - PostgreSQL
 - MongoDB
-- Git
 - Node.js
-- Deno
 - Jest
-- Cloudflare
-- Vercel
+- Deno
 - Auth0
+- Cloudflare

@@ -1,6 +1,6 @@
 ---
 name: Dashdot
-languages: SwiftUI, UIKit, SQLite, Rust, PostgreSQL, Docker, gRPC, OAuth 2.0, JWTs
+languages: SwiftUI, UIKit, Rust, Docker, PostgreSQL, SQLite, gRPC, OAuth 2.0
 link: https://github.com/arden144/dashdot
 priority: 10
 ---
