@@ -7,7 +7,9 @@ import { getJobs, getPrograms } from "../queries";
 import Page from "../layouts/Page.astro";
 import Letterhead from "../components/Letterhead/Letterhead.astro";
 
-const skills = await getCollection("skills");
+const skills = (await getCollection("skills")).sort(
+    (a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0)
+);
 const jobs = await getJobs();
 const programs = await getPrograms();
 const projects = (await getCollection("projects")).sort(

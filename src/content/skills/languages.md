@@ -1,18 +1,19 @@
 ---
 category: Languages
+priority: 10
 ---
 
-- TypeScript
-- JavaScript
-- Java
-- C++
-- C
-- Python
-- Go
 - Swift
 - Rust
-- Kotlin
-- R
-- Haskell
+- Java
+- Go
+- Python
+- C++
+- TypeScript
+- JavaScript
 - HTML
 - CSS
+- Kotlin
+- C
+- R
+- Haskell

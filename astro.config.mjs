@@ -22,7 +22,7 @@ export default defineConfig({
     }
   },
   experimental: {
-    optimizeHoistedScript: true,
+    directRenderScript: true,
   },
   integrations: [icon(), alpinejs()]
 });

@@ -1,0 +1,9 @@
+---
+name: Resume Builder
+link: https://github.com/arden144/resume
+languages: TypeScript, HTML, CSS, Astro, Puppeteer
+priority: 8
+---
+
+- Designed a web-based resume that updates from markdown documents in a simple content management system.
+- Configured Github Actions CI to automatically render a PDF on every commit using an automated web browser controlled by Puppeteer.

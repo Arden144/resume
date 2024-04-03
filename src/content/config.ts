@@ -39,7 +39,8 @@ const projects = defineCollection({
 
 const skills = defineCollection({
     schema: z.object({
-        category: z.string()
+        category: z.string(),
+        priority: z.number().optional(),
     })
 })
 

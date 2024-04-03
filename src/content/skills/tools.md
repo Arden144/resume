@@ -9,5 +9,4 @@ category: Tools
 - Node.js
 - Jest
 - Deno
-- Auth0
 - Cloudflare
