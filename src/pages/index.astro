@@ -26,7 +26,6 @@ const projects = (await getCollection("projects")).sort(
             <li><a href="tel:13067375563">(306) 737-5563</a></li>
             <li>Vancouver, BC</li>
         </ul>
-        <Letterhead />
     </header>
     <section>
         <h3>Technical Skills</h3>
@@ -41,6 +40,10 @@ const projects = (await getCollection("projects")).sort(
         })}</ul>
     </section>
     <section>
+        <h3>Work Experience</h3>
+        {jobs.map(job => <Job job={job} />)}
+    </section>
+    <section>
         <h3>Technical Projects</h3>
         {projects.map(project => <Project project={project} />)}
     </section>
@@ -48,18 +51,12 @@ const projects = (await getCollection("projects")).sort(
         <h3>Education</h3>
         {programs.map(program => <Program program={program} />)}
     </section>
-    <section>
-        <h3>Work Experience</h3>
-        {jobs.map(job => <Job job={job} />)}
-    </section>
+    <footer>
+        <Letterhead />
+    </footer>
 </Page>
 
 <style>
-    header {
-        display: flex;
-        flex-direction: column;
-    }
-
     .contact {
         padding: 0;
         display: flex;
@@ -94,5 +91,9 @@ const projects = (await getCollection("projects")).sort(
                 }
             }
         }
+    }
+
+    footer {
+        margin-top: 1rem;
     }
 </style>

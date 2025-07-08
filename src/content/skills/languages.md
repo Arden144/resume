@@ -3,14 +3,14 @@ category: Languages
 priority: 10
 ---
 
-- Swift
-- Rust
-- Java
-- Go
-- Python
-- C++
 - TypeScript
 - JavaScript
+- Go
+- Java
+- Python
+- C++
+- Rust
+- Swift
 - HTML
 - CSS
 - Kotlin
