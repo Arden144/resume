@@ -5,15 +5,14 @@ import Program from "../components/Program.astro";
 import Project from "../components/Project.astro";
 import { getJobs, getPrograms } from "../queries";
 import Page from "../layouts/Page.astro";
-import Letterhead from "../components/Letterhead/Letterhead.astro";
 
 const skills = (await getCollection("skills")).sort(
-    (a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0)
+    (a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0),
 );
 const jobs = await getJobs();
 const programs = await getPrograms();
 const projects = (await getCollection("projects")).sort(
-    (a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0)
+    (a, b) => (b.data.priority ?? 0) - (a.data.priority ?? 0),
 );
 ---
 
@@ -29,15 +28,19 @@ const projects = (await getCollection("projects")).sort(
     </header>
     <section>
         <h3>Technical Skills</h3>
-        <ul>{skills.map(async entry => {
-            const { Content } = await entry.render();
-            return (
-                <li class="skill">
-                    <b>{entry.data.category}:</b>
-                    <Content />
-                </li>
-            )
-        })}</ul>
+        <ul>
+            {
+                skills.map(async entry => {
+                    const { Content } = await entry.render();
+                    return (
+                        <li class="skill">
+                            <b>{entry.data.category}:</b>
+                            <Content />
+                        </li>
+                    );
+                })
+            }
+        </ul>
     </section>
     <section>
         <h3>Work Experience</h3>
@@ -51,9 +54,9 @@ const projects = (await getCollection("projects")).sort(
         <h3>Education</h3>
         {programs.map(program => <Program program={program} />)}
     </section>
-    <footer>
+    <!-- <footer>
         <Letterhead />
-    </footer>
+    </footer> -->
 </Page>
 
 <style>
@@ -94,6 +97,6 @@ const projects = (await getCollection("projects")).sort(
     }
 
     footer {
-        margin-top: 1rem;
+        margin-top: var(--section-padding);
     }
 </style>

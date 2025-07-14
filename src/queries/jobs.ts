@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { parseDate} from "chrono-node";
+import { parseDate } from "chrono-node";
 
 export interface Job {
     company: string;
@@ -16,8 +16,12 @@ export const getJobs = async (): Promise<Job[]> =>
             positions,
             start: positions
                 .map(p => parseDate(p.data.start))
-                .sort()
+                .filter((date): date is Date => date !== null)
+                .sort((a, b) => b.getTime() - a.getTime())
                 .reverse()[0],
-            end: positions.map(p => parseDate(p.data.end)).sort()[0],
+            end: positions
+                .map(p => parseDate(p.data.end))
+                .filter((date): date is Date => date !== null)
+                .sort((a, b) => b.getTime() - a.getTime())[0],
         }))
         .sort((a, b) => b.end.getTime() - a.end.getTime());

@@ -5,24 +5,24 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    inlineStylesheets: 'always'
-  },
-  vite: {
     build: {
-      cssMinify: "lightningcss"
+        inlineStylesheets: "always",
     },
-    css: {
-      transformer: "lightningcss",
-      lightningcss: {
-        drafts: {
-          nesting: true
-        }
-      }
-    }
-  },
-  experimental: {
-    directRenderScript: true,
-  },
-  integrations: [icon(), alpinejs()]
+    vite: {
+        build: {
+            cssMinify: "lightningcss",
+        },
+        css: {
+            transformer: "lightningcss",
+            lightningcss: {
+                drafts: {
+                    nesting: true,
+                },
+            },
+        },
+    },
+    experimental: {
+        directRenderScript: true,
+    },
+    integrations: [icon(), alpinejs()],
 });

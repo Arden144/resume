@@ -1,53 +1,53 @@
 {
-  "name": "resume",
-  "type": "module",
-  "version": "0.0.3",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check",
-    "generate": "bun scripts/pdf.ts",
-    "postinstall": "bun node_modules/puppeteer/install.mjs"
-  },
-  "dependencies": {
-    "@astrojs/alpinejs": "^0.4.0",
-    "@astrojs/check": "^0.5.4",
-    "@fontsource-variable/noto-serif-georgian": "^5.0.18",
-    "@iconify-json/mdi": "^1.1.64",
-    "@types/alpinejs": "^3.13.6",
-    "alpinejs": "^3.13.5",
-    "astro": "^4.4.0",
-    "chrono-node": "^2.7.5"
-  },
-  "devDependencies": {
-    "astro-icon": "^1.1.0",
-    "@types/bun": "^1.0.6",
-    "lightningcss": "^1.23.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
-    "puppeteer": "^22.1.0",
-    "typescript": "^5.3.3"
-  },
-  "trustedDependencies": [
-    "puppeteer",
-    "sharp",
-    "lightningcss"
-  ],
-  "prettier": {
-    "tabWidth": 4,
-    "arrowParens": "avoid",
-    "printWidth": 100,
-    "plugins": [
-      "./node_modules/prettier-plugin-astro"
+    "name": "resume",
+    "type": "module",
+    "version": "0.0.3",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "check": "astro check",
+        "generate": "bun scripts/pdf.ts",
+        "postinstall": "bun node_modules/puppeteer/install.mjs"
+    },
+    "dependencies": {
+        "@astrojs/alpinejs": "^0.4.0",
+        "@astrojs/check": "^0.5.4",
+        "@fontsource-variable/noto-serif-georgian": "^5.0.18",
+        "@iconify-json/mdi": "^1.1.64",
+        "@types/alpinejs": "^3.13.6",
+        "alpinejs": "^3.13.5",
+        "astro": "^4.4.0",
+        "chrono-node": "^2.7.5"
+    },
+    "devDependencies": {
+        "astro-icon": "^1.1.0",
+        "@types/bun": "^1.0.6",
+        "lightningcss": "^1.23.0",
+        "prettier": "^3.2.5",
+        "prettier-plugin-astro": "^0.13.0",
+        "puppeteer": "^22.1.0",
+        "typescript": "^5.3.3"
+    },
+    "trustedDependencies": [
+        "puppeteer",
+        "sharp",
+        "lightningcss"
     ],
-    "overrides": [
-      {
-        "files": "*.astro",
-        "options": {
-          "parser": "astro"
-        }
-      }
-    ]
-  }
+    "prettier": {
+        "tabWidth": 4,
+        "arrowParens": "avoid",
+        "printWidth": 100,
+        "plugins": [
+            "./node_modules/prettier-plugin-astro/dist/index.js"
+        ],
+        "overrides": [
+            {
+                "files": "*.astro",
+                "options": {
+                    "parser": "astro"
+                }
+            }
+        ]
+    }
 }

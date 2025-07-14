@@ -5,6 +5,5 @@ languages: React, Next.js, Tailwind CSS, TypeScript, PostgreSQL
 priority: 8
 ---
 
-- Developed a full-stack event ticketing web application that allows hosts to create and manage events while enabling users to easily browse, filter, and purchase tickets.
-- Thoughtfully engineered using server-side rendering and client-side lazy loading of data, ensuring a user experience that is both performant and seamless.
-- Integrated with an external authentication provider for secure user account management.
+-   Event Calendar is an event ticketing website built on **Next.js** that allows hosts to create and manage events while enabling users to easily browse, filter, and purchase tickets.
+-   Thoughtfully engineered using **server-side rendering and lazy loading**, resulting in a fast and responsive user experience with great web vitals.

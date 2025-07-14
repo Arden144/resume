@@ -23,8 +23,8 @@ const education = defineCollection({
             program: z.string(),
             start: z.string(),
             end: z.string(),
-            location: z.string()
-        })
+            location: z.string(),
+        }),
     ]),
 });
 
@@ -32,7 +32,11 @@ const projects = defineCollection({
     schema: z.object({
         name: z.string(),
         languages: z.string(),
-        link: z.string().url().transform(url => new URL(url)).optional(),
+        link: z
+            .string()
+            .url()
+            .transform(url => new URL(url))
+            .optional(),
         priority: z.number().optional(),
     }),
 });
@@ -41,8 +45,8 @@ const skills = defineCollection({
     schema: z.object({
         category: z.string(),
         priority: z.number().optional(),
-    })
-})
+    }),
+});
 
 export const collections = {
     jobs,

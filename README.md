@@ -24,12 +24,12 @@ Resume builder looks for `.md` files in the `src/content/**` directories shown a
 
 All commands are run from the root of the project, from a terminal:
 
-| Command             | Action                                           |
-| :------------------ | :----------------------------------------------- |
-| `bun i`             | Installs dependencies                            |
-| `bun dev`           | Starts local dev server at `localhost:4321`      |
-| `bun build`         | Builds your resume preview to `./dist/`          |
-| `bun preview`       | Hosts your resume website at `localhost:4321`    |
-| `bun generate`      | Runs a production build and generates a PDF      |
-| `bun astro ...`     | Run CLI commands like `astro add`, `astro check` |
-| `bun astro --help`  | Get help using the Astro CLI                     |
+| Command            | Action                                           |
+| :----------------- | :----------------------------------------------- |
+| `bun i`            | Installs dependencies                            |
+| `bun dev`          | Starts local dev server at `localhost:4321`      |
+| `bun build`        | Builds your resume preview to `./dist/`          |
+| `bun preview`      | Hosts your resume website at `localhost:4321`    |
+| `bun generate`     | Runs a production build and generates a PDF      |
+| `bun astro ...`    | Run CLI commands like `astro add`, `astro check` |
+| `bun astro --help` | Get help using the Astro CLI                     |

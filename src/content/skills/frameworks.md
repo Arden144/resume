@@ -2,10 +2,10 @@
 category: Frameworks
 ---
 
-- SwiftUI
-- UIKit
-- React
-- Next.js
-- Express.js
-- Svelte
-- Astro
+-   React
+-   Next.js
+-   SwiftUI
+-   UIKit
+-   Express.js
+-   Svelte
+-   Astro

@@ -1,4 +1,5 @@
 ---
+import { parseDate } from "chrono-node";
 import type { Job } from "../queries";
 
 const dateFormat = {
@@ -23,27 +24,29 @@ const roles = multi ? "Various roles" : job.positions[0].data.position;
 <div>
     <div class="info">
         <h5>{job.company}</h5>
-        <h5>{start} – {end}</h6>
+        <h5>{start} – {end}</h5>
         <h6>{roles}</h6>
         <h6>{locations}</h6>
     </div>
     {
-        job.positions.map(async entry => {
-            const { Content } = await entry.render();
-            return (
-                <>
-                    {multi && (
-                        <div class="info">
-                            <h6>{entry.data.position}</h6>
-                            <h6>
-                                {entry.data.start} – {entry.data.end}
-                            </h6>
-                        </div>
-                    )}
-                    <Content />
-                </>
-            );
-        })
+        job.positions
+            .sort((a, b) => parseDate(b.data.end)!.getTime() - parseDate(a.data.end)!.getTime())
+            .map(async entry => {
+                const { Content } = await entry.render();
+                return (
+                    <>
+                        {multi && (
+                            <div class="info">
+                                <h6>{entry.data.position}</h6>
+                                <h6>
+                                    {entry.data.start} – {entry.data.end}
+                                </h6>
+                            </div>
+                        )}
+                        <Content />
+                    </>
+                );
+            })
     }
 </div>
 

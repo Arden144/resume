@@ -9,14 +9,21 @@ const { project } = Astro.props;
 const { name, languages, link } = project.data;
 const { Content } = await project.render();
 
-const cleanURL = (url: URL): string => url.hostname + url.pathname
+const cleanURL = (url: URL): string => url.hostname + url.pathname;
 ---
 
 <div>
     <h5>{name}</h5>
-    {link ? <h6><a href={link}>{cleanURL(link)}</a></h6> : <div></div>}
+    {
+        link ? (
+            <h6>
+                <a href={link}>{cleanURL(link)}</a>
+            </h6>
+        ) : (
+            <div />
+        )
+    }
     <h6>{languages}</h6>
-    
 </div>
 <Content />
 
