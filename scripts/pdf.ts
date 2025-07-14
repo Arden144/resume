@@ -2,7 +2,7 @@ import { build, preview, type AstroInlineConfig } from "astro";
 import { write, fileURLToPath } from "bun";
 import { launch, type Browser } from "puppeteer";
 
-const generatePdf = async (browser: Browser, url: string): Promise<Buffer> => {
+const generatePdf = async (browser: Browser, url: string): Promise<Uint8Array> => {
     const page = await browser.newPage();
 
     await page.goto(url);
@@ -54,7 +54,7 @@ const main = async () => {
         },
     } satisfies AstroInlineConfig;
 
-    const browser = launch({ headless: true });
+    const browser = launch({ headless: true, args: ["--no-sandbox"] });
 
     await build(config);
     const server = await preview(config);
