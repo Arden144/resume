@@ -12,6 +12,7 @@ priority: 10
 -   Rust
 -   Swift
 -   Kotlin
+-   SQL
 -   C
 -   R
 -   Haskell

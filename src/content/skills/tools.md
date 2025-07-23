@@ -2,7 +2,6 @@
 category: Tools
 ---
 
--   RabbitMQ
 -   Git
 -   Docker
 -   Redis
@@ -11,4 +10,6 @@ category: Tools
 -   MongoDB
 -   Node.js
 -   Jest
+-   RabbitMQ
 -   AWS
+-   Jira
